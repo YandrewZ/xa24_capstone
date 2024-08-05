@@ -6,7 +6,7 @@ This is a dating coach chatbot. To run the chatbot, follow the steps below:
 1. Clone the repository to your local machine:
 
 ```
-git clone https://github.com/yiheng-wang-nv/xa_capstone.git
+git clone https://github.com/YandrewZ/xa24_capstone.git
 ```
 or download the zip file and extract it.
 
