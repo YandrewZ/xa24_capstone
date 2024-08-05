@@ -18,18 +18,30 @@ to check your Python version, run the following command in your terminal:
 ```
 python --version
 ``` 
+or 
+
+```
+python3 --version
+```
 
 3. Start a virtual environment and install the required packages:
 
 ```
 cd xa_capstone
-python -m venv myenv
+python -m venv myenv  # or use python3 -m venv myenv
 source myenv/bin/activate
 pip install -r requirements.txt
 ```
 
-1. Create a .streamlit folder in the root directory; then, inside that folder, create a file called 'secrets.toml' and add the groq api key:
+4. Set up your groq api key by running the following command in terminal:
+   
 
+```
+mkdir .streamlit
+touch .streamlit/secrets.toml
+```
+
+then, open the 'secrets.toml' file and add the following line:
 ```
 GROQ_API_KEY = "YOUR_API_KEY"
 ```
