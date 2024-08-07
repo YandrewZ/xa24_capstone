@@ -2,3 +2,7 @@ streamlit
 replicate
 openai
 watchdog
+langchain
+langchain-openai
+streamlit_modal
+streamlit_shadcn_ui
