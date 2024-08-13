@@ -51,7 +51,7 @@ if 'game_metadata' not in st.session_state:
 
 def groq_evaluate_response(response, level):
     if level == 1:
-        print('level 1')
+        # print('level 1')
         messages = [
             # Set an optional system message. This sets the behavior of the assistant
             # and can be used to provide specific instructions for how it should behave
@@ -60,23 +60,28 @@ def groq_evaluate_response(response, level):
                 "role": "system",
                 "content": "You are an imparital observer of a conservation between 2 people, and you need to determine 2 things based on the chat history: 1. whether the last message shows that the user who sent the message has agreed to meet with the other person in person, and has decided a date and time for the meeting. 2. Whether the last message shows that the user who sent the message really don't want to talk to the other person anymore; don't be too strict on this one, meaning that normally it's ok to continue the conversation. Response strictly in the following stringified JSON format: {'task1':True/False, 'task2':True/False}."
             },
-            {
-                "role": "user",
-                "content": response
-            }
+            # {
+            #     "role": "user",
+            #     "content": response
+            # }
         ]
 
-        # for message in st.session_state['messages']:
-        #     if message['role'] == '你':
-        #         messages.append({
-        #             "role": "user",
-        #             "content": message['content']
-        #         })
-        #     else:
-        #         messages.append({
-        #             "role": "assistant",
-        #             "content": message['content']
-        #         })
+        for message in st.session_state['messages']:
+            if message['role'] == '你':
+                messages.append({
+                    "role": "user",
+                    "content": message['content']
+                })
+            else:
+                messages.append({
+                    "role": "assistant",
+                    "content": message['content']
+                })
+        
+        messages.append({
+                "role": "user",
+                "content": response
+        })
 
         response = groq_client.chat.completions.create(
             # Required parameters
@@ -121,7 +126,7 @@ def groq_evaluate_response(response, level):
         return agreed, conversation_ended, friendzoned
     # level 2
     else:
-        print('level 2')
+        # print('level 2')
         messages = [
             # Set an optional system message. This sets the behavior of the assistant
             # and can be used to provide specific instructions for how it should behave
@@ -129,11 +134,29 @@ def groq_evaluate_response(response, level):
             {
                 "role": "system",
                 "content": "You are an imparital observer of a conservation between 2 people, and you need to determine 3 things based on the chat history: 1. whether the last message shows that the user who sent the message has stated clearly that he/she is in love with the other person. 2. Whether the last message shows that the user who sent the message really don't want to talk to the other person anymore, but don't be too strict on this task. 3. Whether the last message clearly indicates that the user who sent the message friendzoned the other person, that is, he/she only wants to be friends with the other person and nothing more. Response in the following stringified JSON format: {'task1':True/False, 'task2':True/False, 'task3':True/False}."
-            }, {
+            }, 
+            # {
+            #     "role": "user",
+            #     "content": response
+            # }
+        ]
+
+        for message in st.session_state['messages']:
+            if message['role'] == '你':
+                messages.append({
+                    "role": "user",
+                    "content": message['content']
+                })
+            else:
+                messages.append({
+                    "role": "assistant",
+                    "content": message['content']
+                })
+        
+        messages.append({
                 "role": "user",
                 "content": response
-            }
-        ]
+        })
 
         # for message in st.session_state['messages']:
         #     if message['role'] == '你':
@@ -580,9 +603,9 @@ if len(st.session_state.messages) > 0 and st.session_state.messages[-1]["role"] 
 
     agreed, conversation_ended, friendzoned = groq_evaluate_response(response, st.session_state["game_metadata"]['level'])
 
-    print("agreed: ", agreed)
-    print("finished: ", conversation_ended)
-    print("friendzoned: ", friendzoned)
+    # print("agreed: ", agreed)
+    # print("finished: ", conversation_ended)
+    # print("friendzoned: ", friendzoned)
 
     if conversation_ended:
         st.session_state["game_metadata"]= {
