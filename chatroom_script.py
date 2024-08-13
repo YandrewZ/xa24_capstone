@@ -58,7 +58,7 @@ def groq_evaluate_response(response, level):
             # throughout the conversation.
             {
                 "role": "system",
-                "content": "You are an imparital observer of a conservation between 2 people, and you need to determine 2 things based on the chat history: 1. whether the last message shows that the user who sent the message has agreed to meet with the other person in person, and has decided a date and time for the meeting. 2. Whether the last message shows that the user who sent the message really don't want to talk to the other person anymore, but don't be too strict on this task. Response in the following stringified JSON format: {'task1':True/False, 'task2':True/False}."
+                "content": "You are an imparital observer of a conservation between 2 people, and you need to determine 2 things based on the chat history: 1. whether the last message shows that the user who sent the message has agreed to meet with the other person in person, and has decided a date and time for the meeting. 2. Whether the last message shows that the user who sent the message really don't want to talk to the other person anymore; don't be too strict on this one, meaning that normally it's ok to continue the conversation. Response strictly in the following stringified JSON format: {'task1':True/False, 'task2':True/False}."
             },
             {
                 "role": "user",
@@ -128,7 +128,7 @@ def groq_evaluate_response(response, level):
             # throughout the conversation.
             {
                 "role": "system",
-                "content": "You are an imparital observer of a conservation between 2 people, and you need to determine 23 things based on the chat history: 1. whether the last message shows that the user who sent the message has stated clearly that he/she is in love with the other person. 2. Whether the last message shows that the user who sent the message really don't want to talk to the other person anymore, but don't be too strict on this task. 3. Whether the last message clearly indicates that the user who sent the message friendzoned the other person, that is, he/she only wants to be friends with the other person and nothing more. Response in the following stringified JSON format: {'task1':True/False, 'task2':True/False, 'task3':True/False}."
+                "content": "You are an imparital observer of a conservation between 2 people, and you need to determine 3 things based on the chat history: 1. whether the last message shows that the user who sent the message has stated clearly that he/she is in love with the other person. 2. Whether the last message shows that the user who sent the message really don't want to talk to the other person anymore, but don't be too strict on this task. 3. Whether the last message clearly indicates that the user who sent the message friendzoned the other person, that is, he/she only wants to be friends with the other person and nothing more. Response in the following stringified JSON format: {'task1':True/False, 'task2':True/False, 'task3':True/False}."
             }, {
                 "role": "user",
                 "content": response
